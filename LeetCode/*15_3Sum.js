@@ -24,44 +24,8 @@ var threeSum = function(nums) {
       map[num] = true;
     }
   });
-  for (let i = 0; i < minus.length - 1; i++) {
-    if (minus[i] === minus[i + 1]) {
-      while (minus[i] === minus[i + 2]) {
-        i++;
-      }
-      if (map[-(minus[i] + minus[i])]) {
-        answer.push([minus[i], minus[i], -(minus[i] + minus[i])]);
-      }
-      i++;
-    }
-    for (let j = i + 1; j < minus.length; j++) {
-      while (minus[j] === minus[j + 1]) {
-        j++;
-      }
-      if (map[-(minus[i] + minus[j])]) {
-        answer.push([minus[i], minus[j], -(minus[i] + minus[j])]);
-      }
-    }
-  }
-  for (let i = 0; i < plus.length - 1; i++) {
-    if (plus[i] === plus[i + 1]) {
-      while (plus[i] === plus[i + 2]) {
-        i++;
-      }
-      if (map[-(plus[i] + plus[i])]) {
-        answer.push([-(plus[i] + plus[i]), plus[i], plus[i]]);
-      }
-      i++;
-    }
-    for (let j = i + 1; j < plus.length; j++) {
-      while (plus[j] === plus[j + 1]) {
-        j++;
-      }
-      if (map[-(plus[i] + plus[j])]) {
-        answer.push([-(plus[i] + plus[j]), plus[i], plus[j]]);
-      }
-    }
-  }
+  goThroughArray(minus, map, answer);
+  goThroughArray(plus, map, answer);
   if (zeroCount) {
     for (let key in map) {
       if (key > 0 && map[-key]) {
@@ -74,3 +38,25 @@ var threeSum = function(nums) {
   }
   return answer;
 };
+
+function goThroughArray(array, map, answer) {
+  for (let i = 0; i < array.length - 1; i++) {
+    if (array[i] === array[i + 1]) {
+      while (array[i] === array[i + 2]) {
+        i++;
+      }
+      if (map[-(array[i] + array[i])]) {
+        answer.push([array[i], array[i], -(array[i] + array[i])]);
+      }
+      i++;
+    }
+    for (let j = i + 1; j < array.length; j++) {
+      while (array[j] === array[j + 1]) {
+        j++;
+      }
+      if (map[-(array[i] + array[j])]) {
+        answer.push([array[i], array[j], -(array[i] + array[j])]);
+      }
+    }
+  }
+}
