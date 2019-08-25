@@ -3,7 +3,7 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-  // 0(1)
+  // 0(n)
   let max = nums[0];
   let sum = max;
   for (let i = 1; i < nums.length; i++) {
@@ -16,7 +16,7 @@ var maxSubArray = function(nums) {
   }
   return max;
 
-  // O(n)
+  // O(n^2)
   // let max = Number.MIN_SAFE_INTEGER;
   // while (nums.length > 0) {
   //   let sum = 0;
